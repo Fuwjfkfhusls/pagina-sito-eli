@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Poemas</title>
+<style>
+body{
+background:linear-gradient(#72c0d8,#313779);
+color:rgb(0, 0, 0);
+font-family:Verdana;
+padding:60px;
+}
+.poema{
+background:rgba(500,500,500,.1);
+padding:50px;
+border-radius:50px;
+}
+.menu{
+    text-align:center;
+    margin:40px 0;
+}
+
+.btn{
+    display:inline-block;
+    margin:10px;
+    padding:15px 25px;
+    border-radius:50px;
+    background:linear-gradient(90deg,#00bfff,#c363db);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+</style>
+</head>
+<body>
+
+<style>
+  .audio-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ac55a0;
+    padding: 10px;
+    border-radius: 8px;
+    width: 300px;
+  }
+  .play-btn {
+    background: #60beca;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .barra {
+    flex: 1;
+    accent-color: #00ffb3;
+  }
+  .tiempo {
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 14px;
+    min-width: 80px;
+  }
+</style>
+
+<div class="audio-player">
+  <audio id="miAudio" src="musica/audiof.mp4"></audio>
+  <button class="play-btn" id="btnPlay">▶</button>
+  <input type="range" class="barra" id="progreso" value="0">
+  <span class="tiempo" id="tiempo">0:00 / 0:00</span>
+</div>
+
+<script>
+  const audio = document.getElementById('miAudio');
+  const btnPlay = document.getElementById('btnPlay');
+  const progreso = document.getElementById('progreso');
+  const tiempo = document.getElementById('tiempo');
+
+  btnPlay.onclick = () => {
+    if (audio.paused) {
+      audio.play();
+      btnPlay.textContent = '❚❚';
+    } else {
+      audio.pause();
+      btnPlay.textContent = '▶';
+    }
+  };
+
+  audio.onloadedmetadata = () => {
+    progreso.max = audio.duration;
+  };
+
+  audio.ontimeupdate = () => {
+    progreso.value = audio.currentTime;
+    const format = s => Math.floor(s / 60) + ':' + ('0' + Math.floor(s % 60)).slice(-2);
+    tiempo.textContent = `${format(audio.currentTime)} / ${format(audio.duration)}`;
+  };
+
+  progreso.oninput = () => {
+    audio.currentTime = progreso.value;
+  };
+</script>
+
+<div class="menu-2">
+<a class="btn" href="oso.html">🏠 volver al Inicio</a>
+</div>
+
+<h1>💌 Poemas</h1>
+
+<div class="poema">
+Tu sonrisa ilumina mis noches,<br>
+
+<br>mi querida eli,dedico a tu nombre estas palabras que brotan del alma, como un susurro de amor eterno que se entrelaza con cada latido de mi corazón.
+<br><br>En el jardín de mis pensamientos, tu imagen florece como la más hermosa de las flores, y cada pétalo lleva el aroma de tu esencia, un perfume que embriaga mis sentidos y me hace sentir vivo en cada instante que compartimos.
+<br></div> la calma de tus ojos
+<br>encontre mi propio hogar,
+<br>un rincón donde el destino
+<br>me enseñó a volver a soñar.
+<br><br>
+<br>Eres pausa en el tumulto,
+<br>la respuesta a mi buscar,
+<br>el refugio que mis brazos
+<br>eligieron para habitar.
+<br><br>
+<br>Si el mundo afuera se apaga,
+<br>tu sonrisa es el rincón
+<br>donde encuentro la mañana,
+<br>el latido y la razón.
+<br><br>
+<br>Y aunque el tiempo pase raudo
+<br>y cambie deprisa el sol,
+<br>me quedo a vivir contigo
+<br>en este eterno presente de amor.
+</div>
+
+</body>
+</html>

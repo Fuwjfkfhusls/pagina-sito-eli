@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mi chika hermosa</title>
+
+<style>
+html, body {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    overflow-y: scroll;
+}
+
+body{
+    min-height:65vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    overflow:hidden;
+
+    font-family:Verdana, Geneva, sans-serif;
+    color:white;
+
+    background:
+    radial-gradient(circle at top left, #00f1fd 0%, transparent 25%),
+    radial-gradient(circle at bottom right,#4da6ff 0%, transparent 30%),
+    linear-gradient(
+        135deg,
+        #001f4d,
+        #003d80,
+        #0059b3,
+        #007fff
+    );
+}
+
+/* Luces decorativas */
+.glow1,
+.glow2{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+    z-index:0;
+}
+
+.glow1{
+    width:300px;
+    height:300px;
+    background:rgba(59, 216, 255, 0.25);
+    top:-80px;
+    left:-80px;
+}
+
+.glow2{
+    width:350px;
+    height:350px;
+    background:rgba(255, 0, 76, 0.25);
+    bottom:-100px;
+    right:-100px;
+}
+
+/* Contenedor principal */
+.contenedor{
+    position:relative;
+    z-index:2;
+    text-align:center;
+}
+
+/* Marco morado y verde */
+.marco{
+    display:inline-block;
+    padding:14px;
+    border-radius:25px;
+
+    background:linear-gradient(
+        135deg,
+        #ff69de,
+        #c77dff,
+        #ffa3f7,
+        #02c4ff,
+        #38f0d1
+    );
+
+    box-shadow:
+    0 0 15px #7dffff,
+    0 0 30px #7287ff,
+    0 0 50px rgba(114, 255, 255, 0.8);
+}
+
+/* Imagen */
+.marco img{
+    width:400px;
+    max-width:90vw;
+    display:block;
+
+    border-radius:18px;
+    border:4px solid white;
+}
+
+/* Caja de texto */
+.texto{
+    margin-top:25px;
+    width:550px;
+    max-width:90vw;
+
+    padding:20px;
+
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(8px);
+
+    border:2px solid #c77dff;
+    border-radius:20px;
+
+    box-shadow:
+    0 0 15px rgba(199,125,255,.8),
+    0 0 25px rgba(255, 114, 180, 0.5);
+}
+
+.texto h1{
+    margin-bottom:12px;
+    color:#e0aaff;
+
+    text-shadow:
+    0 0 10px #c77dff,
+    0 0 20px #80ff72;
+}
+
+.texto p{
+    line-height:1.7;
+    font-size:17px;
+}
+/* Pequeñas estrellas */
+.estrella{
+    position:absolute;
+    color:white;
+    font-size:24px;
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 20px #ff66cc;
+    animation:brillar 3s infinite alternate;
+}
+
+.e1{top:10%;left:15%;}
+.e2{top:20%;right:18%;}
+.e3{bottom:15%;left:20%;}
+.e4{bottom:20%;right:15%;}
+
+@keyframes brillar{
+    from{
+        opacity:.4;
+        transform:scale(1);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.3);
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<div class="estrella e1">✦</div>
+<div class="estrella e2">✦</div>
+<div class="estrella e3">✦</div>
+<div class="estrella e4">✦</div>
+
+</head>
+
+<body>
+
+<div class="glow1"></div>
+<div class="glow2"></div>
+
+
+<!-- Música de fondo -->
+<body>
+
+<style>
+  .audio-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ac55a0;
+    padding: 10px;
+    border-radius: 8px;
+    width: 300px;
+  }
+  .play-btn {
+    background: #60beca;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .barra {
+    flex: 1;
+    accent-color: #00ffb3;
+  }
+  .tiempo {
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 14px;
+    min-width: 80px;
+  }
+</style>
+
+<div class="audio-player">
+  <audio id="miAudio" src="musica/chica.mp4"></audio>
+  <button class="play-btn" id="btnPlay">▶</button>
+  <input type="range" class="barra" id="progreso" value="0">
+  <span class="tiempo" id="tiempo">0:00 / 0:00</span>
+</div>
+
+<script>
+  const audio = document.getElementById('miAudio');
+  const btnPlay = document.getElementById('btnPlay');
+  const progreso = document.getElementById('progreso');
+  const tiempo = document.getElementById('tiempo');
+
+  btnPlay.onclick = () => {
+    if (audio.paused) {
+      audio.play();
+      btnPlay.textContent = '❚❚';
+    } else {
+      audio.pause();
+      btnPlay.textContent = '▶';
+    }
+  };
+
+  audio.onloadedmetadata = () => {
+    progreso.max = audio.duration;
+  };
+
+  audio.ontimeupdate = () => {
+    progreso.value = audio.currentTime;
+    const format = s => Math.floor(s / 60) + ':' + ('0' + Math.floor(s % 60)).slice(-2);
+    tiempo.textContent = `${format(audio.currentTime)} / ${format(audio.duration)}`;
+  };
+
+  progreso.oninput = () => {
+    audio.currentTime = progreso.value;
+  };
+</script>
+
+
+<div class="contenedor">
+
+    <!-- Imagen principal -->
+    <div class="marco">
+        <img src="imagenes/gyaru.jpeg" alt="Imagen principal">
+    </div>
+
+    <!-- Zona de texto -->
+    <div class="texto">
+          <p>
+          ella es la chiva que tiene mi corazon entero,con ella soy el chico mas feliz del mundo,ella es mi todo,la amo con toda mi alma,ella es la luz de mi vida,ella es mi sol,ella es mi luna,ella es mi estrella,ella es mi universo,ella es mi todo,mi niña hermosa de ojitos lindos,mi nonny,mi eli,mi morita toda hermosa,ella es una chica espectacular,es hamable,graciosa,carismatica,es una mujer increibe,amo cada cosa que ella hace,en verdad agrasdesco mucho que ella forme parte de mi vida por que me complementa de manera espectacular,es mi media naranja,es el amor de mi vida <3
+        </p>
+    </div>
+    <style>
+.menu{
+    text-align:center;
+    margin:40px 0;
+}
+
+.btn{
+    display:inline-block;
+    margin:10px;
+    padding:15px 25px;
+    border-radius:50px;
+    background:linear-gradient(90deg,#00bfff,#8a2be2);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+</style>
+<div class="menu">
+<a class="btn" href="oso.html">🏠 volver al Inicio</a>
+</div>
+
+</div>
+
+</body>
+</html>
